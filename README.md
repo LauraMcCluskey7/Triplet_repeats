@@ -1,6 +1,6 @@
 # Triplet_repeats
 
-##Installation
+## Installation
 
 ```
 git clone https://github.com/LauraMcCluskey7/Triplet_repeats.git 
@@ -8,7 +8,7 @@ git clone https://github.com/LauraMcCluskey7/Triplet_repeats.git
 
 
 
-##To run:
+## To run:
 
 
 ```
