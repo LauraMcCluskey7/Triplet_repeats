@@ -1,6 +1,8 @@
 import pandas
 import numpy
-import sys
+
+
+
 
 def get_triplets_table(gene, worksheet):
 
@@ -44,6 +46,21 @@ def get_triplets_table(gene, worksheet):
         else:
            number=round(number)
         triplets_table.iloc[a,2]=number
+        a=a+1
+
+
+
+    #Round 3rd peak column to the nearest integer
+
+    triplets_table_num_rows=triplets_table.shape[0]
+    a=0
+    while (a<triplets_table_num_rows):
+        number=triplets_table.iloc[a,3]
+        if numpy.isnan(number):
+            number=None
+        else:
+           number=round(number)
+        triplets_table.iloc[a,3]=number
         a=a+1
 
     return(triplets,triplets_table)
@@ -113,6 +130,7 @@ def match_control_samples_with_references(triplets,gene):
 
     controls["peak_1"]=peak_list_1
     controls["peak_2"]=peak_list_2
+   
     controls["triplets_1"]=triplets_list_1
     controls["triplets_2"]=triplets_list_2
 
@@ -413,8 +431,8 @@ def format_columns(triplets_table, controls, worksheet, gene):
 
 if __name__ == "__main__":
 
-    gene=sys.argv[1]
-    worksheet=sys.argv[2]
+    gene=input('Enter gene')
+    worksheet=input('Enter worksheet')
 
 
     triplets,triplets_table=get_triplets_table(gene, worksheet)
