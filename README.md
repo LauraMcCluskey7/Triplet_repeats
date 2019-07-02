@@ -9,7 +9,7 @@ git clone https://github.com/LauraMcCluskey7/Triplet_repeats.git
 
 ```
 pip install pystaller
-'''
+```
 
 ```
 pyinstaller get_triplet_repeats-3_alleles.py
