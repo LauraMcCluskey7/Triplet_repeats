@@ -431,8 +431,8 @@ def format_columns(triplets_table, controls, worksheet, gene):
 
 if __name__ == "__main__":
 
-    gene=input('Enter gene')
-    worksheet=input('Enter worksheet')
+    gene=input('Enter gene:')
+    worksheet=input('Enter worksheet:')
 
 
     triplets,triplets_table=get_triplets_table(gene, worksheet)
