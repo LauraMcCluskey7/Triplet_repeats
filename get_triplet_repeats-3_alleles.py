@@ -368,7 +368,7 @@ def get_number_of_triplet_repeats(triplets_table):
         else:
             triplets_table.iloc[a,4]=int(triplets_table.iloc[a,4])
             triplets_table.iloc[a,7]=int(triplets_table.iloc[a,7])
-            difference=triplets_table.iloc[a,3]-triplets_table.iloc[a,7]
+            difference=triplets_table.iloc[a,4]-triplets_table.iloc[a,7]
             if (difference==0):
                 triplets_table.iloc[a,10]=int(triplets_table.iloc[a,10])
                 difference=triplets_table.iloc[a,10]
