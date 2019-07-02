@@ -20,8 +20,5 @@ pyinstaller get_triplet_repeats-3_alleles.py
 ## To run:
 
 
-```
 -Click on the executable 
 -Input the gene name and worksheet number into the console
-
-```
