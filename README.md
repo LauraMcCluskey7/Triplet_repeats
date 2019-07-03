@@ -19,7 +19,7 @@ git clone https://github.com/LauraMcCluskey7/Triplet_repeats.git
 ```
 
 ```
-pip install pystaller
+pip install pyinstaller
 ```
 
 ```
