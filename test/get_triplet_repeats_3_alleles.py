@@ -9,14 +9,12 @@ def get_triplets_table(gene, worksheet):
 
     triplets=pandas.read_csv(worksheet+"_"+gene+".txt", sep="\t")
 
-
     #extract the peak sizes columns from the table
 
     triplets_table=triplets.iloc[:,[0,2,6,10]]
 
 
     #split the first column to extract the sample id
-
     sample=triplets_table["Sample File"].str.split("_", n=2, expand=True)
     sample2=list(sample[1])
     triplets_table["Sample"]=sample2
@@ -62,6 +60,7 @@ def get_triplets_table(gene, worksheet):
            number=round(number)
         triplets_table.iloc[a,3]=number
         a=a+1
+
 
     return(triplets,triplets_table)
 
@@ -160,6 +159,7 @@ def match_control_samples_with_references(triplets,gene):
         continue_analysis="Controls do not match"
         continue_program="no"
     controls=controls.iloc[:,[0,1,2,5,6]]
+
     return (controls,continue_program)
 
 
@@ -291,7 +291,6 @@ def find_closest_control_peak_to_sample_peaks(triplets_table,controls):
     
     
     triplets_table["repeats_closest_3"]=repeats_closest3
-
     return(triplets_table)
 
 
@@ -424,16 +423,16 @@ def format_columns(triplets_table, controls, worksheet, gene):
         a=a+1
     triplets_table["Size 3"]=numbers
 
-    triplets_table.to_csv(worksheet+"_"+gene+"_triplets_output.txt", index=None, sep='\t')
 
-    return(triplets_table)
+    triplets_table.to_csv(worksheet+"_"+gene+"_triplets_output.txt", index=None, sep='\t')
+    return (triplets_table)
 
 
 
 if __name__ == "__main__":
 
-    gene=input('Enter gene:')
-    worksheet=input('Enter worksheet:')
+    gene=input('Enter gene')
+    worksheet=input('Enter worksheet')
 
 
     triplets,triplets_table=get_triplets_table(gene, worksheet)
@@ -446,4 +445,4 @@ if __name__ == "__main__":
 
         triplets_table_3=get_number_of_triplet_repeats(triplets_table_2)
 
-        format_columns(triplets_table_3, controls, worksheet, gene)
+        triplets_table_4=format_columns(triplets_table_3, controls, worksheet, gene)
