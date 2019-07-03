@@ -1,5 +1,16 @@
 # Triplet_repeats
 
+## Requirements:
+
+* numpy
+* pandas
+* xlrd
+* pyinstaller 
+
+The executable file must be created on a windows platform 
+
+
+
 ## Installation
 
 ```
@@ -15,6 +26,7 @@ pip install pystaller
 pyinstaller get_triplet_repeats-3_alleles.py
 
 ```
+
 
 
 ## To run:
