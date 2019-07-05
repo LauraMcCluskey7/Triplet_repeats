@@ -6,9 +6,12 @@ import numpy
 
 def get_triplets_table(gene, worksheet):
 
-
-    triplets=pandas.read_csv(worksheet+"_"+gene+".txt", sep="\t")
-
+    try:
+        triplets=pandas.read_csv(worksheet+"_"+gene+".txt", sep="\t")
+    except:
+        file=open(worksheet+"_"+gene+"_triplets_output.txt", 'w')
+        file.write("Genemapper file could not be found- check file name")
+        file.close()    
 
     #extract the peak sizes columns from the table
 
@@ -430,20 +433,32 @@ def format_columns(triplets_table, controls, worksheet, gene):
 
 
 
+
 if __name__ == "__main__":
 
     gene=input('Enter gene:')
     worksheet=input('Enter worksheet:')
 
+    if ((gene=="FRAX") or (gene=="FA") or (gene=="C9ORF72") or (gene=="HD") or (gene=="MDMYo(DM1)") or (gene=="PROMM(DM2)")):
 
-    triplets,triplets_table=get_triplets_table(gene, worksheet)
+        triplets,triplets_table=get_triplets_table(gene, worksheet)
 
-    controls,continue_program=match_control_samples_with_references(triplets,gene)
+        controls,continue_program=match_control_samples_with_references(triplets,gene)
 
-    if (continue_program=="yes"):
+        if (continue_program=="yes"):
 
-        triplets_table_2=find_closest_control_peak_to_sample_peaks(triplets_table,controls)
+            triplets_table_2=find_closest_control_peak_to_sample_peaks(triplets_table,controls)
 
-        triplets_table_3=get_number_of_triplet_repeats(triplets_table_2)
+            triplets_table_3=get_number_of_triplet_repeats(triplets_table_2)
 
-        format_columns(triplets_table_3, controls, worksheet, gene)
+            format_columns(triplets_table_3, controls, worksheet, gene)
+
+        else:
+            file=open(worksheet+"_"+gene+"_triplets_output.txt", 'w')
+            file.write("The controls are not within +/- 1 of the reference controls")
+            file.close()
+
+    else:
+        file=open(worksheet+"_"+gene+"_triplets_output.txt",'w')
+       	file.write("Gene entered incorrectly")
+       	file.close()
