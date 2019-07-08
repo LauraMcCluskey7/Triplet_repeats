@@ -439,7 +439,7 @@ if __name__ == "__main__":
     gene=input('Enter gene:')
     worksheet=input('Enter worksheet:')
 
-    if ((gene=="FRAX") or (gene=="FA") or (gene=="C9ORF72") or (gene=="HD") or (gene=="MDMYo(DM1)") or (gene=="PROMM(DM2)")):
+    if ((gene=="FRAX") or (gene=="FA") or (gene=="C9ORF72") or (gene=="HD") or (gene=="MDMYo(DM1)") or (gene=="SCA1") or (gene=="SCA2") or (gene=="SCA3") or (gene=="SCA6")):
 
         triplets,triplets_table=get_triplets_table(gene, worksheet)
 
