@@ -182,7 +182,6 @@ def match_control_samples_with_references(triplets,gene):
     filtered_df=controls[controls['valid']=="yes"]
     num_rows_filtered=filtered_df.shape[0]
     if (num_rows_filtered!=num_rows_controls):
-        continue_analysis="Controls do not match"
         continue_program="no"
     controls=controls.iloc[:,[0,1,2,5,6]]
     return (controls,continue_program)
