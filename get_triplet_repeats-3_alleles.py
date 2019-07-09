@@ -195,8 +195,9 @@ def find_closest_control_peak_to_sample_peaks(triplets_table,controls):
 
     '''
 
-    Create a list of the peak values in the control samples
+    Create a list of the peak values in the control samples.
     Match the peak values of each of the samples to the values in this list to find the closest.
+    Add columns for the number of repeats that correspond to the closest peak values.
 
     '''
 
