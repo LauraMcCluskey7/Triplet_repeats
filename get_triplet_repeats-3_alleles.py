@@ -15,7 +15,7 @@ def get_triplets_table(gene, worksheet):
     '''
 
 
-    #try opening the triplets file otherwise output that the file could not be found
+    #try opening the triplets file otherwise output that the file could not be found.
 
     try:
         triplets=pandas.read_csv(worksheet+"_"+gene+".txt", sep="\t")
@@ -23,6 +23,8 @@ def get_triplets_table(gene, worksheet):
         file=open(worksheet+"_"+gene+"_triplets_output.txt", 'w')
         file.write("Genemapper file could not be found- check file name")
         file.close()    
+
+
 
     #extract the peak sizes columns from the table
 
@@ -47,6 +49,7 @@ def get_triplets_table(gene, worksheet):
     #Round 1st peak column to the nearest integer
 
     triplets_table['Size 1']=triplets_table['Size 1'].apply(lambda x: round(x))
+
 
 
     #Round 2nd peak column to the nearest integer
@@ -96,7 +99,7 @@ def match_control_samples_with_references(triplets,gene):
     '''
 
 
-    #Extract only the rows of control samples from the original triplets table
+    #Extract only the rows of Normal/control samples from the original triplets table
 
     sample=triplets["Sample File"].str.split("_", n=3, expand=True)
     sample2=list(sample[1])
@@ -136,7 +139,7 @@ def match_control_samples_with_references(triplets,gene):
     triplets_list_2=[]
 
 
-    #only keep the rows of the reference control table that match sampleids of the controls used
+    #only keep the rows of the reference control table that match sample ids of the controls used
 
     num_rows_controls=controls.shape[0]
     num_rows_triplet_controls=triplet_control_file.shape[0]
@@ -304,6 +307,9 @@ def find_closest_control_peak_to_sample_peaks(triplets_table,controls):
     triplets_table["repeats_closest_2"]=repeats_closest2
 
 
+
+    #Find the closest control peak size to each of the 3rd sample peak sizes
+
     a=0
 
     repeats_closest3=[]
@@ -337,8 +343,8 @@ def get_number_of_triplet_repeats(triplets_table):
 
     '''
 
-    Find the difference between the sample peak size and the peak size of the closest control
-    Divide this value by 3 and add it to the number of repeats in the control to find the number of repeats the sample peak correlates to.
+    Find the difference between the sample peak size and the peak size of the closest control.
+    Divide this value by 3 and add it to the number of repeats in the control, to find the number of repeats the sample peak correlates to.
     Repeat this for all three peaks for all samples.
 
     '''    
@@ -402,6 +408,8 @@ def get_number_of_triplet_repeats(triplets_table):
 
 
 
+   #Do the same for the 3rd sample peak size column
+
     a=0
 
     difference3=[]
@@ -441,15 +449,16 @@ def format_columns(triplets_table, controls, worksheet, gene):
 
     '''
 
-    Extract the sample, peak sizes and repeat columns that will be in the final output
-    Replace empty values with NaN
-    Output table as a file in the current folder
+    Extract the sample, peak sizes and repeat columns that will be in the final output.
+    Replace empty values with NaN.
+    Output table as a file in the current folder.
 
     '''
 
 
     #Extract the sample, peak sizes and repeats columns
     triplets_table=triplets_table.iloc[:,[0,2,3,4,11,12,13]]
+
 
     a=0
     numbers=[]
@@ -463,6 +472,7 @@ def format_columns(triplets_table, controls, worksheet, gene):
         numbers.append(number)
         a=a+1
     triplets_table["Size 2"]=numbers
+
 
     a=0
     numbers=[]
